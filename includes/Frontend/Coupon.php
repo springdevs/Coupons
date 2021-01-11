@@ -13,7 +13,7 @@ class Coupon
 {
     public function __construct()
     {
-        add_filter('woocommerce_get_price_html', [$this, 'update_price_html'], 100, 2);
+        // add_filter('woocommerce_get_price_html', [$this, 'update_price_html'], 10, 2);
         add_filter("woocommerce_product_get_price", [$this, "update_product_price"], 10, 2);
         add_filter('woocommerce_cart_item_price', [$this, 'change_cart_table_price_display'], 30, 3);
         add_filter('woocommerce_coupon_custom_discounts_array', [$this, 'custom_discount_for_bulk_coupon'], 10, 2);
