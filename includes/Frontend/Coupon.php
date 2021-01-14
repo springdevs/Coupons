@@ -48,7 +48,7 @@ class Coupon
                     if (in_array($product->get_id(), $product_ids)) return $price - (($couponData->get_amount() / 100) * $price);
                 }
         }
-        if ($product->get_sale_price()) return $product->get_sale_price();
+        // if ($product->get_sale_price()) return $product->get_sale_price();
         return $price;
     }
 
@@ -60,7 +60,7 @@ class Coupon
         } else {
             $product = wc_get_product($values['variation_id']);
         }
-        if ($product->get_regular_price() != $product->get_sale_price()) $price = $slashed_price;
+        if ($product->get_regular_price() > $values['data']->get_price()) $price = $slashed_price;
         return $price;
     }
 
