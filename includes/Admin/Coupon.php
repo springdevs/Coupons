@@ -44,8 +44,13 @@ class Coupon
      **/
     public function coupon_save_meta_post($post_id)
     {
-        if (!isset($_POST['discount_type']) || !isset($_POST['sdwac_coupon_admin_nonce'])) return;
-        if (!wp_verify_nonce($_POST["sdwac_coupon_admin_nonce"], "sdwac_coupon_admin_nonce")) wp_die(__('Sorry !! You cannot permit to access.', 'sdevs_wea'));
+        if (!isset($_POST['discount_type']) || !isset($_POST['sdwac_coupon_admin_nonce'])) {
+            return;
+        }
+
+        if (!wp_verify_nonce($_POST["sdwac_coupon_admin_nonce"], "sdwac_coupon_admin_nonce")) {
+            wp_die(__('Sorry !! You cannot permit to access.', 'sdevs_wea'));
+        }
 
         $type = sanitize_text_field($_POST['discount_type']);
 
@@ -59,36 +64,39 @@ class Coupon
                 $discountLength = sanitize_text_field($_POST["discountLength"]);
                 for ($i = 0; $i < $discountLength; $i++) {
                     array_push($sdwac_coupon_discount, [
-                        "min" => sanitize_text_field($_POST["sdwac_coupon_discount_min_" . $i]),
-                        "max" => sanitize_text_field($_POST["sdwac_coupon_discount_max_" . $i]),
-                        "type" => sanitize_text_field($_POST["sdwac_coupon_discount_type_" . $i]),
-                        "value" => $_POST["sdwac_coupon_discount_value_" . $i] ? sanitize_text_field($_POST["sdwac_coupon_discount_value_" . $i]) : 0
+                        "min"   => sanitize_text_field($_POST["sdwac_coupon_discount_min_" . $i]),
+                        "max"   => sanitize_text_field($_POST["sdwac_coupon_discount_max_" . $i]),
+                        "type"  => sanitize_text_field($_POST["sdwac_coupon_discount_type_" . $i]),
+                        "value" => $_POST["sdwac_coupon_discount_value_" . $i] ? sanitize_text_field($_POST["sdwac_coupon_discount_value_" . $i]) : 0,
                     ]);
                 }
             }
             update_post_meta($post_id, '_sdwac_coupon_meta', [
-                "type" => $type,
+                "type"      => $type,
                 'discounts' => $sdwac_coupon_discount,
             ]);
         }
 
         $post_meta = get_post_meta($post_id, '_sdwac_coupon_meta', true);
-        if (!is_array($post_meta)) $post_meta = [];
-        $rulesLength = sanitize_text_field($_POST["rulesLength"]);
-        $relation = $_POST["sdwac_coupon_rule_relation"] ? sanitize_text_field($_POST["sdwac_coupon_rule_relation"]) : "match_all";
+        if (!is_array($post_meta)) {
+            $post_meta = [];
+        }
+
+        $rulesLength        = sanitize_text_field($_POST["rulesLength"]);
+        $relation           = $_POST["sdwac_coupon_rule_relation"] ? sanitize_text_field($_POST["sdwac_coupon_rule_relation"]) : "match_all";
         $sdwac_coupon_rules = [];
         if ($rulesLength != 0) {
             for ($i = 0; $i < $rulesLength; $i++) {
                 array_push($sdwac_coupon_rules, [
-                    "type" => sanitize_text_field($_POST["sdwac_coupon_rule_type_" . $i]),
-                    "operator" => sanitize_text_field($_POST["sdwac_coupon_rule_operator_" . $i]),
+                    "type"       => sanitize_text_field($_POST["sdwac_coupon_rule_type_" . $i]),
+                    "operator"   => sanitize_text_field($_POST["sdwac_coupon_rule_operator_" . $i]),
                     "item_count" => sanitize_text_field($_POST["sdwac_coupon_rule_item_" . $i]),
-                    "calculate" => sanitize_text_field($_POST["sdwac_coupon_rule_calculate_" . $i])
+                    "calculate"  => sanitize_text_field($_POST["sdwac_coupon_rule_calculate_" . $i]),
                 ]);
             }
         }
         $post_meta['relation'] = $relation;
-        $post_meta['rules'] = $sdwac_coupon_rules;
+        $post_meta['rules']    = $sdwac_coupon_rules;
         update_post_meta($post_id, '_sdwac_coupon_meta', $post_meta);
     }
 }
