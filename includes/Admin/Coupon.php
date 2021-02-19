@@ -54,11 +54,10 @@ class Coupon
 
         $type = sanitize_text_field($_POST['discount_type']);
 
-        if ($type == 'sdwac_product_fixed' || $type == 'sdwac_product_percent') {
-            $product_list_type = sanitize_text_field($_POST['sdwac_product_lists']);
-            update_post_meta($post_id, '_sdwac_coupon_meta', ["type" => $type, 'list' => $product_list_type]);
-            return;
-        } elseif ($type == 'sdwac_bulk') {
+        $product_list_type = sanitize_text_field($_POST['sdwac_product_lists']);
+        update_post_meta($post_id, '_sdwac_coupon_meta', ["type" => $type, 'list' => $product_list_type]);
+
+        if ($type == 'sdwac_bulk') {
             $sdwac_coupon_discount = [];
             if (isset($_POST["discountLength"])) {
                 $discountLength = sanitize_text_field($_POST["discountLength"]);
