@@ -54,7 +54,6 @@ class Auto
                 if ($validate) {
                     WC()->cart->apply_coupon($coupon_code);
                 }
-
             }
         } elseif (in_array($coupon_code, $applied_coupons)) {
             WC()->cart->remove_coupon($coupon_code);

@@ -19,6 +19,7 @@ class Validation
         $coupon_id = $coupon->get_id();
         $coupon_meta = get_post_meta($coupon_id, "_sdwac_coupon_meta", true);
         if (empty($coupon_meta) || !is_array($coupon_meta)) return $valid;
+        if (empty(WC()->cart->get_cart())) return false;
         if (isset($coupon_meta['relation']) && isset($coupon_meta['rules']) && $coupon->get_discount_type() != 'sdwac_product_percent' && $coupon->get_discount_type() != 'sdwac_product_fixed') {
             $check_rules = $this->check_rules($coupon_meta['relation'], $coupon_meta['rules'], $coupon);
             if (!$check_rules) return false;
@@ -29,6 +30,10 @@ class Validation
         if ($coupon_meta['type'] == 'sdwac_product_percent' || $coupon_meta['type'] == 'sdwac_product_fixed') {
             if ($coupon_meta['list'] == 'inList') {
                 foreach (WC()->cart->get_cart() as $value) if (!in_array($value["product_id"], $product_ids)) return false;
+            } else {
+                $in_product = false;
+                foreach (WC()->cart->get_cart() as $value) if (in_array($value["product_id"], $product_ids)) $in_product = true;
+                return $in_product;
             }
         }
         return $valid;
