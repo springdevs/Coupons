@@ -14,7 +14,7 @@ class Auto
             return;
         }
 
-        add_action('wp_head', [$this, "auto_coupon_on_cart"]);
+        add_action('wp_head', [$this, 'auto_coupon_on_cart']);
     }
 
     /**
@@ -39,7 +39,7 @@ class Auto
 
         $user    = wp_get_current_user();
         $user_id = $user->ID;
-        $coupon  = get_option("sdwac_first_time_purchase_coupon");
+        $coupon  = get_option('sdwac_first_time_purchase_coupon');
         if ($coupon == 0) {
             return;
         }
@@ -77,7 +77,7 @@ class Auto
         $applied_coupons  = WC()->cart->get_applied_coupons();
         foreach ($filtered_coupons as $coupon) {
             $coupon_code = wc_get_coupon_code_by_id($coupon->ID);
-            $coupon_meta = get_post_meta($coupon->ID, "sdwac_coupon_panel", true);
+            $coupon_meta = get_post_meta($coupon->ID, 'sdwac_coupon_panel', true);
             $validate    = Validation::check($coupon_code);
             if ($validate && $coupon_meta['auto_coupon'] && !in_array(strtolower($coupon_code), $applied_coupons)) {
                 WC()->cart->apply_coupon($coupon_code);
@@ -92,7 +92,7 @@ class Auto
     public function filter_coupon($posts)
     {
         $filter_posts = [];
-        $first_coupon = get_option("sdwac_first_time_purchase_coupon");
+        $first_coupon = get_option('sdwac_first_time_purchase_coupon');
         foreach ($posts as $post) {
             if ($first_coupon != $post->ID) {
                 array_push($filter_posts, $post);

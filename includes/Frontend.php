@@ -20,13 +20,16 @@ class Frontend
     {
         $exists = $this->is_rest();
         if ($exists) return;
-        new IlluminateCoupon;
-        new Validation;
-        new Coupon;
-        new Auto;
-        new Url;
+        new IlluminateCoupon();
+        new Validation();
+        new Coupon();
+        new Auto();
+        new Url();
     }
 
+    /**
+     * @return bool
+     */
     public function is_rest()
     {
         $prefix = rest_get_url_prefix();

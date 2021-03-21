@@ -3,25 +3,30 @@
 namespace springdevs\WooAdvanceCoupon\Frontend;
 
 /**
- * 
+ *
  * Class Coupon
- * 
+ *
  * apply coupon feature
- * 
+ *
  */
 class Coupon
 {
     public function __construct()
     {
         // add_filter('woocommerce_get_price_html', [$this, 'update_price_html'], 10, 2);
-        add_filter("woocommerce_product_get_price", [$this, "update_product_price"], 10, 2);
+        add_filter('woocommerce_product_get_price', [$this, 'update_product_price'], 10, 2);
         add_filter('woocommerce_cart_item_price', [$this, 'change_cart_table_price_display'], 30, 3);
         add_filter('woocommerce_coupon_custom_discounts_array', [$this, 'custom_discount_for_bulk_coupon'], 10, 2);
-        add_filter('woocommerce_cart_totals_coupon_html', [$this, "change_product_coupon_html"], 30, 3);
+        add_filter('woocommerce_cart_totals_coupon_html', [$this, 'change_product_coupon_html'], 30, 3);
         add_filter('woocommerce_product_variation_get_price', [$this, 'update_product_price'], 10, 2);
         add_filter('woocommerce_variation_prices_price', [$this, 'update_product_price'], 99, 2);
     }
 
+    /**
+     * @param $price_html
+     * @param $product
+     * @return mixed|string
+     */
     public function update_price_html($price_html, $product)
     {
         if ($product->get_regular_price() != $product->get_price() && !$product->is_type('variable'))
@@ -78,8 +83,9 @@ class Coupon
     /**
      * Bulk Discount
      *
+     * @param $coupon
      * @return discount
-     **/
+     */
     public function get_bulk_discount($coupon)
     {
         $coupon_id = $coupon->get_id();
@@ -104,8 +110,11 @@ class Coupon
     /**
      * change product coupon html
      *
+     * @param $coupon_html
+     * @param $coupon
+     * @param $discount_amount_html
      * @return coupon_html
-     **/
+     */
     public function change_product_coupon_html($coupon_html, $coupon, $discount_amount_html)
     {
         $coupon_meta = get_post_meta($coupon->get_id(), "_sdwac_coupon_meta", true);
