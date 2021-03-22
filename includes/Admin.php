@@ -4,6 +4,7 @@ namespace springdevs\WooAdvanceCoupon;
 
 use springdevs\WooAdvanceCoupon\Admin\Coupon;
 use springdevs\WooAdvanceCoupon\Admin\MetaBoxes;
+use springdevs\WooAdvanceCoupon\Admin\Order;
 use springdevs\WooAdvanceCoupon\Admin\sdwac_Panels;
 use springdevs\WooAdvanceCoupon\Admin\Setting;
 use springdevs\WooAdvanceCoupon\Illuminate\Coupon as IlluminateCoupon;
@@ -20,11 +21,12 @@ class Admin
     public function __construct()
     {
         $this->dispatch_actions();
-        new IlluminateCoupon;
-        new Coupon;
-        new MetaBoxes;
-        new sdwac_Panels;
-        new Setting;
+        new IlluminateCoupon();
+        new Coupon();
+        new MetaBoxes();
+        new sdwac_Panels();
+        new Setting();
+        new Order();
     }
 
     /**

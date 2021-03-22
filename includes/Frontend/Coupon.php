@@ -41,7 +41,7 @@ class Coupon
         foreach ($coupons as $coupon) {
             $couponData = new \WC_Coupon($coupon);
             $coupon_id = $couponData->get_id();
-            $post_meta = get_post_meta($coupon_id, "_sdwac_coupon_meta", true);
+            $post_meta = get_post_meta($coupon_id, '_sdwac_coupon_meta', true);
             if (!(empty($post_meta) || !is_array($post_meta) || !isset($post_meta['type'])))
                 if ($post_meta['type'] == 'sdwac_product_fixed') {
                     $product_ids = $couponData->get_product_ids();
@@ -83,13 +83,13 @@ class Coupon
     /**
      * Bulk Discount
      *
-     * @param $coupon
+     * @param object $coupon
      * @return discount
      */
     public function get_bulk_discount($coupon)
     {
         $coupon_id = $coupon->get_id();
-        $post_meta = get_post_meta($coupon_id, "_sdwac_coupon_meta", true);
+        $post_meta = get_post_meta($coupon_id, '_sdwac_coupon_meta', true);
         $cart = WC()->cart;
         $bulk_discount = 0;
         foreach ($post_meta['discounts'] as $discount) {

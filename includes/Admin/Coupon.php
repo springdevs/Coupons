@@ -9,15 +9,15 @@ class Coupon
 {
     public function __construct()
     {
-        add_action("edit_form_top", [$this, 'add_html_for_vue']);
-        add_action("admin_enqueue_scripts", [$this, 'enqueue_assets']);
+        add_action('edit_form_top', [$this, 'add_html_for_vue']);
+        add_action('admin_enqueue_scripts', [$this, 'enqueue_assets']);
         add_action('save_post_shop_coupon', [$this, 'coupon_save_meta_post']);
     }
 
     public function add_html_for_vue()
     {
         $screen = get_current_screen();
-        if ($screen->post_type == "shop_coupon") {
+        if ($screen->post_type == 'shop_coupon') {
             echo "<span id='wac_post'>";
         }
     }
@@ -29,6 +29,11 @@ class Coupon
         wp_enqueue_style("sdwac_coupon_app_css");
         wp_localize_script(
             'sdwac_coupon_app',
+            'sdwac_coupon_helper_obj',
+            array('ajax_url' => admin_url('admin-ajax.php'))
+        );
+        wp_localize_script(
+            'sdwac_admin_coupon',
             'sdwac_coupon_helper_obj',
             array('ajax_url' => admin_url('admin-ajax.php'))
         );

@@ -3,6 +3,7 @@
 namespace springdevs\WooAdvanceCoupon;
 
 use springdevs\WooAdvanceCoupon\Frontend\Auto;
+use springdevs\WooAdvanceCoupon\Frontend\Checkout;
 use springdevs\WooAdvanceCoupon\Frontend\Coupon;
 use springdevs\WooAdvanceCoupon\Frontend\Url;
 use springdevs\WooAdvanceCoupon\Frontend\Validation;
@@ -25,6 +26,7 @@ class Frontend
         new Coupon();
         new Auto();
         new Url();
+        new Checkout();
     }
 
     /**

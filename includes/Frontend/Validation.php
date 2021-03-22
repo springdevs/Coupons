@@ -211,7 +211,7 @@ class Validation
      * @param $code
      * @return bool
      */
-    public static function check($code)
+    public static function check($code): bool
     {
         $coupon = new \WC_Coupon($code);
         $class = new Validation();
