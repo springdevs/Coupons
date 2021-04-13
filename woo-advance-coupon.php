@@ -108,8 +108,10 @@ final class sdwac_coupon_main
      */
     public function init_plugin()
     {
-        $this->includes();
-        $this->init_hooks();
+        if (class_exists('WooCommerce')) {
+            $this->includes();
+            $this->init_hooks();
+        }
     }
 
     /**
