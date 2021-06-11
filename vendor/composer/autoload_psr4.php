@@ -6,5 +6,5 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'springdevs\\WooAdvanceCoupon\\' => array($baseDir . '/includes'),
+    'SpringDevs\\Coupons\\' => array($baseDir . '/includes'),
 );

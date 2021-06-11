@@ -1,6 +1,6 @@
 <?php
 
-namespace springdevs\WooAdvanceCoupon\Admin;
+namespace SpringDevs\Coupons\Admin;
 
 /**
  * sdwac_Panels class
@@ -29,7 +29,7 @@ class sdwac_Panels
     public function coupon_data_tabs($tabs)
     {
         $tabs['sdwac_coupon_features'] = array(
-            'label'     => __('Woo Coupon', 'sdevs_wea'),
+            'label'     => __('Woo Coupon', 'sdevs_coupons'),
             'class'  => 'sdwac_coupon_coupon_panel',
             'target'     => 'sdwac_coupon_tabs_screen'
         );
@@ -67,14 +67,14 @@ class sdwac_Panels
 
             woocommerce_wp_checkbox([
                 "id" => "sdwac_url_coupon",
-                "label" => __("Coupon By URL", "sdevs_wea"),
+                "label" => __("Coupon By URL", "sdevs_coupons"),
                 "value" => "yes",
                 "cbvalue" => $url_coupon
             ]);
 
             woocommerce_wp_checkbox([
                 "id" => "sdwac_auto_coupon",
-                "label" => __("Automatic Apply", "sdevs_wea"),
+                "label" => __("Automatic Apply", "sdevs_coupons"),
                 "value" => "yes",
                 "cbvalue" => $auto_coupon
             ]);

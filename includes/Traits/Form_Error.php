@@ -1,6 +1,6 @@
 <?php
 
-namespace springdevs\WooAdvanceCoupon\Traits;
+namespace SpringDevs\Coupons\Traits;
 
 /**
  * Error handler trait

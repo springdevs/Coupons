@@ -1,6 +1,6 @@
 <?php
 
-namespace springdevs\WooAdvanceCoupon\Admin;
+namespace SpringDevs\Coupons\Admin;
 
 /**
  * MetaBoxes Class for coupon
@@ -46,18 +46,18 @@ class MetaBoxes
      */
     public function coupon_discount_screen()
     {
-        ?>
-		<superdiscount />
-	<?php
-}
+?>
+        <superdiscount />
+    <?php
+    }
 
     /**
      * Screen of Rules Box
      */
     public function coupon_rules_screen()
     {
-        ?>
-		<superrules />
+    ?>
+        <superrules />
 <?php
-}
+    }
 }

@@ -1,7 +1,6 @@
 <?php
 
-
-namespace springdevs\WooAdvanceCoupon\Frontend;
+namespace SpringDevs\Coupons\Frontend;
 
 
 class Checkout

@@ -1,6 +1,6 @@
 <?php
 
-namespace springdevs\WooAdvanceCoupon\Frontend;
+namespace SpringDevs\Coupons\Frontend;
 
 /**
  * Class Auto

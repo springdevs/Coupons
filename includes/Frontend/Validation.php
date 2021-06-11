@@ -1,6 +1,6 @@
 <?php
 
-namespace springdevs\WooAdvanceCoupon\Frontend;
+namespace SpringDevs\Coupons\Frontend;
 
 /**
  * Class Validation
@@ -29,7 +29,8 @@ class Validation
             isset($coupon_meta['relation']) &&
             isset($coupon_meta['rules']) &&
             $coupon->get_discount_type() != 'sdwac_product_percent' &&
-            $coupon->get_discount_type() != 'sdwac_product_fixed') {
+            $coupon->get_discount_type() != 'sdwac_product_fixed'
+        ) {
             $check_rules = $this->check_rules($coupon_meta['relation'], $coupon_meta['rules'], $coupon);
             if ($check_rules) {
                 return $valid;

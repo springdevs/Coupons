@@ -1,13 +1,13 @@
 <?php
 
-namespace springdevs\WooAdvanceCoupon;
+namespace SpringDevs\Coupons;
 
-use springdevs\WooAdvanceCoupon\Admin\Coupon;
-use springdevs\WooAdvanceCoupon\Admin\MetaBoxes;
-use springdevs\WooAdvanceCoupon\Admin\Order;
-use springdevs\WooAdvanceCoupon\Admin\sdwac_Panels;
-use springdevs\WooAdvanceCoupon\Admin\Setting;
-use springdevs\WooAdvanceCoupon\Illuminate\Coupon as IlluminateCoupon;
+use SpringDevs\Coupons\Admin\Coupon;
+use SpringDevs\Coupons\Admin\MetaBoxes;
+use SpringDevs\Coupons\Admin\Order;
+use SpringDevs\Coupons\Admin\sdwac_Panels;
+use SpringDevs\Coupons\Admin\Setting;
+use SpringDevs\Coupons\Illuminate\Coupon as IlluminateCoupon;
 
 /**
  * The admin class

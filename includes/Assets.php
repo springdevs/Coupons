@@ -1,6 +1,6 @@
 <?php
 
-namespace springdevs\WooAdvanceCoupon;
+namespace SpringDevs\Coupons;
 
 /**
  * Scripts and Styles Class

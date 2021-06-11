@@ -4,31 +4,36 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitaf96d97d3289cad25c2c755344486969
+class ComposerStaticInit4fba975d72cba0b3d70c2eff26850805
 {
     public static $files = array (
-        '4c66dd42ee4ffa679c26f2771a096a1e' => __DIR__ . '/../..' . '/includes/functions.php',
+        'a2559667e3ed12ba21d7979c60ae0e62' => __DIR__ . '/../..' . '/includes/functions.php',
     );
 
     public static $prefixLengthsPsr4 = array (
-        's' => 
+        'S' => 
         array (
-            'springdevs\\WooAdvanceCoupon\\' => 28,
+            'SpringDevs\\Coupons\\' => 19,
         ),
     );
 
     public static $prefixDirsPsr4 = array (
-        'springdevs\\WooAdvanceCoupon\\' => 
+        'SpringDevs\\Coupons\\' => 
         array (
             0 => __DIR__ . '/../..' . '/includes',
         ),
     );
 
+    public static $classMap = array (
+        'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
+    );
+
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInitaf96d97d3289cad25c2c755344486969::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInitaf96d97d3289cad25c2c755344486969::$prefixDirsPsr4;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit4fba975d72cba0b3d70c2eff26850805::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit4fba975d72cba0b3d70c2eff26850805::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit4fba975d72cba0b3d70c2eff26850805::$classMap;
 
         }, null, ClassLoader::class);
     }

@@ -1,6 +1,6 @@
 <?php
 
-namespace springdevs\WooAdvanceCoupon\Admin;
+namespace SpringDevs\Coupons\Admin;
 
 /**
  * Setting class
@@ -16,7 +16,7 @@ class Setting
 
     public function add_section($sections)
     {
-        $sections['coupon'] = __('Coupon', 'sdevs_wea');
+        $sections['coupon'] = __('Coupon', 'sdevs_coupons');
         return $sections;
     }
 
@@ -27,9 +27,9 @@ class Setting
             $coupon_settings = [];
 
             $coupon_settings[] = [
-                'name' => __('Coupon Settings', 'sdevs_wea'),
+                'name' => __('Coupon Settings', 'sdevs_coupons'),
                 'type' => 'title',
-                'desc' => __('The following options are used to configure Coupon Module', 'sdevs_wea'),
+                'desc' => __('The following options are used to configure Coupon Module', 'sdevs_coupons'),
                 'id'   => 'coupon',
             ];
 
@@ -47,38 +47,38 @@ class Setting
 
             // first time purchase coupon
             $coupon_settings[] = array(
-                'name'    => __('Coupon for first Purchase', 'sdevs_wea'),
+                'name'    => __('Coupon for first Purchase', 'sdevs_coupons'),
                 'id'      => 'sdwac_first_time_purchase_coupon',
                 'type'    => 'select',
                 'options' => $sdwac_coupons,
-                'desc'    => __('Select a discount from here which you want to enable for new customers', 'sdevs_wea'),
+                'desc'    => __('Select a discount from here which you want to enable for new customers', 'sdevs_coupons'),
             );
 
             // price cut from
             $coupon_settings[] = array(
-                'name'    => __('Price Cut From', 'sdevs_wea'),
+                'name'    => __('Price Cut From', 'sdevs_coupons'),
                 'id'      => 'sdwac_price_cut_from',
                 'type'    => 'select',
                 'options' => [
-                    'regular' => __('Regular price', 'sdevs_wea'),
-                    'sale'    => __('Sale price', 'sdevs_wea'),
+                    'regular' => __('Regular price', 'sdevs_coupons'),
+                    'sale'    => __('Sale price', 'sdevs_coupons'),
                 ],
             );
 
             // Multi Coupon
             $coupon_settings[] = array(
-                'name'    => __('Multi Coupon', 'sdevs_wea'),
+                'name'    => __('Multi Coupon', 'sdevs_coupons'),
                 'id'      => 'sdwac_multi',
                 'type'    => 'select',
                 'options' => [
-                    'yes' => __('Yes', 'sdevs_wea'),
-                    'no'  => __('No', 'sdevs_wea'),
+                    'yes' => __('Yes', 'sdevs_coupons'),
+                    'no'  => __('No', 'sdevs_coupons'),
                 ],
             );
 
             // Coupon Url slug Name
             $coupon_settings[] = array(
-                'name' => __('Coupon Url slug Name', 'sdevs_wea'),
+                'name' => __('Coupon Url slug Name', 'sdevs_coupons'),
                 'id'   => 'sdwac_url',
                 'type' => 'text',
                 'desc' => get_home_url() . '/?<b>' . get_option('sdwac_url') . '</b>=coupon_code',
