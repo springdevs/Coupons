@@ -41,10 +41,16 @@ Create gift vouchers, store credits, special discounts based on the amount spent
         2. Visit 'Plugins'.
         3. Activate the `Coupons` plugin.
 
-== Changelog ==
 
-    = 1.0.1 =
-        * Fix woocommerce alert bug
+== Screenshots ==
+
+1. Avaiable coupon types
+2. Create coupon with Bulk Discount
+3. Apply coupon Automatically or applied by url
+4. Coupon Settings
+
+
+== Changelog ==
 
     = 1.0.0 =
         * Initial release
