@@ -1,16 +1,9 @@
 # Coupons
 
-> A module of [Missing Addons for WooCommerce](https://github.com/springdevs/wc-essential-addons)
+Create gift vouchers, store credits, special discounts based on the amount spent, etc.
 
-## 1.0.2
+## changelog
 
-- Revert module to plugin
-
-## 1.0.1
-
-- Merge WooCommerce coupon with our coupon !!
-- Fix some major bugs
-
-## 1.0.0
+### 1.0.0
 
 - Initial release

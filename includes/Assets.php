@@ -42,7 +42,7 @@ class Assets
         foreach ($scripts as $handle => $script) {
             $deps      = isset($script['deps']) ? $script['deps'] : false;
             $in_footer = isset($script['in_footer']) ? $script['in_footer'] : false;
-            $version   = isset($script['version']) ? $script['version'] : sdwac_coupon_ASSETS_VERSION;
+            $version   = isset($script['version']) ? $script['version'] : SDEVS_COUPON_VERSION;
 
             wp_register_script($handle, $script['src'], $deps, $version, $in_footer);
         }
@@ -60,7 +60,7 @@ class Assets
         foreach ($styles as $handle => $style) {
             $deps = isset($style['deps']) ? $style['deps'] : false;
 
-            wp_register_style($handle, $style['src'], $deps, sdwac_coupon_ASSETS_VERSION);
+            wp_register_style($handle, $style['src'], $deps, SDEVS_COUPON_VERSION);
         }
     }
 
@@ -71,7 +71,7 @@ class Assets
      */
     public function get_scripts()
     {
-        $plugin_js_assets_path = sdwac_coupon_ASSETS_ASSETS . '/js/';
+        $plugin_js_assets_path = SDEVS_COUPON_ASSETS . '/js/';
 
         $scripts = [
             "sdwac_coupon_app" => [
@@ -95,7 +95,7 @@ class Assets
      */
     public function get_styles()
     {
-        $plugin_css_assets_path = sdwac_coupon_ASSETS_ASSETS . '/css/';
+        $plugin_css_assets_path = SDEVS_COUPON_ASSETS . '/css/';
 
         $styles = [
             "sdwac_coupon_app_css" => [

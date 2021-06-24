@@ -135,12 +135,12 @@ final class Sdevs_coupon
      */
     public function define_constants()
     {
-        define('sdwac_coupon_ASSETS_VERSION', self::version);
-        define('sdwac_coupon_ASSETS_FILE', __FILE__);
-        define('sdwac_coupon_ASSETS_PATH', dirname(sdwac_coupon_ASSETS_FILE));
-        define('sdwac_coupon_ASSETS_INCLUDES', sdwac_coupon_ASSETS_PATH . '/includes');
-        define('sdwac_coupon_ASSETS_URL', plugins_url('', sdwac_coupon_ASSETS_FILE));
-        define('sdwac_coupon_ASSETS_ASSETS', sdwac_coupon_ASSETS_URL . '/assets');
+        define('SDEVS_COUPON_VERSION', self::version);
+        define('SDEVS_COUPON_FILE', __FILE__);
+        define('SDEVS_COUPON_PATH', dirname(SDEVS_COUPON_FILE));
+        define('SDEVS_COUPON_INCLUDES', SDEVS_COUPON_PATH . '/includes');
+        define('SDEVS_COUPON_URL', plugins_url('', SDEVS_COUPON_FILE));
+        define('SDEVS_COUPON_ASSETS', SDEVS_COUPON_URL . '/assets');
     }
 
     /**
