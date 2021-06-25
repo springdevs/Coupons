@@ -3,7 +3,7 @@
 Plugin Name: Coupons
 Plugin URI: https://wordpress.org/plugins/sdevs-wc-coupons
 Description: Create gift vouchers, store credits, special discounts based on the amount spent, etc.
-Version: 1.0.2
+Version: 1.0.0
 Author: SpringDevs
 Author URI: https://springdevs.com/
 License: GPLv2
@@ -57,7 +57,7 @@ final class Sdevs_coupon
      *
      * @var string
      */
-    const version = '1.0.2';
+    const version = '1.0.0';
 
     /**
      * Holds various class instances
