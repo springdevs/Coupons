@@ -1,6 +1,6 @@
 <?php
 
-namespace springdevs\WooAdvanceCoupon\Frontend;
+namespace SpringDevs\Coupons\Frontend;
 
 /**
  * Class sdwac_coupon_url
@@ -26,7 +26,7 @@ class Url
     {
         $url = get_option("sdwac_url");
         if (isset($_GET[$url])) {
-            $coupon_code = esc_attr($_GET[$url]);
+            $coupon_code = esc_url($_GET[$url]);
             WC()->session->set('coupon_code', $coupon_code);
         }
     }

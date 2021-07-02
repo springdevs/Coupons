@@ -1,7 +1,7 @@
 <?php
 
 
-namespace springdevs\WooAdvanceCoupon\Admin;
+namespace SpringDevs\Coupons\Admin;
 
 
 class Order

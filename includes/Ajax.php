@@ -1,6 +1,6 @@
 <?php
 
-namespace springdevs\WooAdvanceCoupon;
+namespace SpringDevs\Coupons;
 
 /**
  * Ajax Handler
@@ -54,7 +54,6 @@ class Ajax
             if (isset($post_meta['rules']) && isset($post_meta['relation']) && is_array($post_meta['rules'])) {
                 wp_send_json(['relation' => $post_meta['relation'], 'rules' => $post_meta['rules']]);
             }
-
         }
     }
 
@@ -66,7 +65,6 @@ class Ajax
             if (isset($post_meta['discounts']) && is_array($post_meta['discounts'])) {
                 wp_send_json($post_meta['discounts']);
             }
-
         }
     }
 
@@ -138,7 +136,7 @@ class Ajax
     public function sdwac_coupon_save_filters()
     {
         if (!wp_verify_nonce($_POST["sdwac_coupon_nonce"], "sdwac_coupon_with_ajax")) {
-            wp_die(__('Sorry !! You cannot permit to access.', 'sdevs_wea'));
+            wp_die(__('Sorry !! You cannot permit to access.', 'sdevs_coupons'));
         }
         $post_id = (int)$_POST["post_id"];
         if (is_int($post_id)) {

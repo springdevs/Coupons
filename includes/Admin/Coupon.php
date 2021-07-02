@@ -1,6 +1,6 @@
 <?php
 
-namespace springdevs\WooAdvanceCoupon\Admin;
+namespace SpringDevs\Coupons\Admin;
 
 /**
  * Admin Coupon Class
@@ -54,7 +54,7 @@ class Coupon
         }
 
         if (!wp_verify_nonce($_POST["sdwac_coupon_admin_nonce"], "sdwac_coupon_admin_nonce")) {
-            wp_die(__('Sorry !! You cannot permit to access.', 'sdevs_wea'));
+            wp_die(__('Sorry !! You cannot permit to access.', 'sdevs_coupons'));
         }
 
         $type = sanitize_text_field($_POST['discount_type']);

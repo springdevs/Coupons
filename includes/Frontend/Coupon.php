@@ -1,6 +1,6 @@
 <?php
 
-namespace springdevs\WooAdvanceCoupon\Frontend;
+namespace SpringDevs\Coupons\Frontend;
 
 /**
  *
@@ -126,7 +126,7 @@ class Coupon
             } else {
                 $discount_amount_html = '[on products] ' . wc_price($coupon->get_amount());
             }
-            $coupon_html          = $discount_amount_html . ' <a class="woocommerce-remove-coupon" href="' . esc_url(add_query_arg('remove_coupon', urlencode($coupon->get_code()), defined('WOOCOMMERCE_CHECKOUT') ? wc_get_checkout_url() : wc_get_cart_url())) . '" class="woocommerce-remove-coupon" data-coupon="' . esc_attr($coupon->get_code()) . '">' . __('[Remove]', 'sdevs_wea') . '</a>';
+            $coupon_html          = $discount_amount_html . ' <a class="woocommerce-remove-coupon" href="' . esc_url(add_query_arg('remove_coupon', urlencode($coupon->get_code()), defined('WOOCOMMERCE_CHECKOUT') ? wc_get_checkout_url() : wc_get_cart_url())) . '" class="woocommerce-remove-coupon" data-coupon="' . esc_attr($coupon->get_code()) . '">' . __('[Remove]', 'sdevs_coupons') . '</a>';
         }
         return $coupon_html;
     }

@@ -1,4 +1,42 @@
 <?php
+/*
+Plugin Name: Coupons
+Plugin URI: https://wordpress.org/plugins/sdevs-wc-coupons
+Description: Create gift vouchers, store credits, special discounts based on the amount spent, etc.
+Version: 1.0.0
+Author: SpringDevs
+Author URI: https://springdevs.com/
+License: GPLv2
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: sdevs_coupons
+Domain Path: /languages
+*/
+
+/**
+ * Copyright (c) 2021 SpringDevs (email: contact@springdevs.com). All rights reserved.
+ *
+ * Released under the GPL license
+ * http://www.opensource.org/licenses/gpl-license.php
+ *
+ * This is an add-on for WordPress
+ * http://wordpress.org/
+ *
+ * **********************************************************************
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+ * **********************************************************************
+ */
 
 // don't call the file directly
 if (!defined('ABSPATH')) {
@@ -8,18 +46,18 @@ if (!defined('ABSPATH')) {
 require_once __DIR__ . '/vendor/autoload.php';
 
 /**
- * sdwac_coupon_main class
+ * Sdevs_coupon class
  *
- * @class sdwac_coupon_main The class that holds the entire sdwac_coupon_main plugin
+ * @class Sdevs_coupon The class that holds the entire Sdevs_coupon plugin
  */
-final class sdwac_coupon_main
+final class Sdevs_coupon
 {
     /**
      * Plugin version
      *
      * @var string
      */
-    const version = '1.0.2';
+    const version = '1.0.0';
 
     /**
      * Holds various class instances
@@ -29,7 +67,7 @@ final class sdwac_coupon_main
     private $container = [];
 
     /**
-     * Constructor for the sdwac_coupon_main class
+     * Constructor for the Sdevs_coupon class
      *
      * Sets up all the appropriate hooks and actions
      * within our plugin.
@@ -37,13 +75,17 @@ final class sdwac_coupon_main
     private function __construct()
     {
         $this->define_constants();
+
+        register_activation_hook(__FILE__, [$this, 'activate']);
+        register_deactivation_hook(__FILE__, [$this, 'deactivate']);
+
         add_action('plugins_loaded', [$this, 'init_plugin']);
     }
 
     /**
-     * Initializes the sdwac_coupon_main() class
+     * Initializes the Sdevs_coupon() class
      *
-     * Checks for an existing sdwac_coupon_main() instance
+     * Checks for an existing Sdevs_coupon() instance
      * and if it doesn't find one, creates it.
      *
      */
@@ -52,7 +94,7 @@ final class sdwac_coupon_main
         static $instance = false;
 
         if (!$instance) {
-            $instance = new sdwac_coupon_main();
+            $instance = new Sdevs_coupon();
         }
 
         return $instance;
@@ -93,12 +135,12 @@ final class sdwac_coupon_main
      */
     public function define_constants()
     {
-        define('sdwac_coupon_ASSETS_VERSION', self::version);
-        define('sdwac_coupon_ASSETS_FILE', __FILE__);
-        define('sdwac_coupon_ASSETS_PATH', dirname(sdwac_coupon_ASSETS_FILE));
-        define('sdwac_coupon_ASSETS_INCLUDES', sdwac_coupon_ASSETS_PATH . '/includes');
-        define('sdwac_coupon_ASSETS_URL', plugins_url('', sdwac_coupon_ASSETS_FILE));
-        define('sdwac_coupon_ASSETS_ASSETS', sdwac_coupon_ASSETS_URL . '/assets');
+        define('SDEVS_COUPON_VERSION', self::version);
+        define('SDEVS_COUPON_FILE', __FILE__);
+        define('SDEVS_COUPON_PATH', dirname(SDEVS_COUPON_FILE));
+        define('SDEVS_COUPON_INCLUDES', SDEVS_COUPON_PATH . '/includes');
+        define('SDEVS_COUPON_URL', plugins_url('', SDEVS_COUPON_FILE));
+        define('SDEVS_COUPON_ASSETS', SDEVS_COUPON_URL . '/assets');
     }
 
     /**
@@ -115,6 +157,26 @@ final class sdwac_coupon_main
     }
 
     /**
+     * Placeholder for activation function
+     *
+     * Nothing being called here yet.
+     */
+    public function activate()
+    {
+        $installer = new SpringDevs\Coupons\Installer();
+        $installer->run();
+    }
+
+    /**
+     * Placeholder for deactivation function
+     *
+     * Nothing being called here yet.
+     */
+    public function deactivate()
+    {
+    }
+
+    /**
      * Include the required files
      *
      * @return void
@@ -122,15 +184,15 @@ final class sdwac_coupon_main
     public function includes()
     {
         if ($this->is_request('admin')) {
-            $this->container['admin'] = new springdevs\WooAdvanceCoupon\Admin();
+            $this->container['admin'] = new SpringDevs\Coupons\Admin();
         }
 
         if ($this->is_request('frontend')) {
-            $this->container['frontend'] = new springdevs\WooAdvanceCoupon\Frontend();
+            $this->container['frontend'] = new SpringDevs\Coupons\Frontend();
         }
 
         if ($this->is_request('ajax')) {
-            $this->container['ajax'] = new springdevs\WooAdvanceCoupon\Ajax();
+            $this->container['ajax'] = new SpringDevs\Coupons\Ajax();
         }
     }
 
@@ -157,8 +219,8 @@ final class sdwac_coupon_main
         if ($this->is_request('ajax')) {
             // $this->container['ajax'] =  new sdwac_coupon\sdwac_coupon_Coupon\Ajax();
         }
-        $this->container['api']    = new springdevs\WooAdvanceCoupon\Api();
-        $this->container['assets'] = new springdevs\WooAdvanceCoupon\Assets();
+        $this->container['api']    = new SpringDevs\Coupons\Api();
+        $this->container['assets'] = new SpringDevs\Coupons\Assets();
     }
 
     /**
@@ -168,7 +230,7 @@ final class sdwac_coupon_main
      */
     public function localization_setup()
     {
-        load_plugin_textdomain('sdwac_coupon', false, dirname(plugin_basename(__FILE__)) . '/languages/');
+        load_plugin_textdomain('sdevs_coupons', false, dirname(plugin_basename(__FILE__)) . '/languages/');
     }
 
     /**
@@ -197,19 +259,19 @@ final class sdwac_coupon_main
                 return (!is_admin() || defined('DOING_AJAX')) && !defined('DOING_CRON');
         }
     }
-} // sdwac_coupon_main
+} // Sdevs_coupon
 
 /**
  * Initialize the main plugin
  *
- * @return \sdwac_coupon_main|bool
+ * @return \sdevs_coupon|bool
  */
-function sdwac_coupon_main()
+function sdevs_coupon()
 {
-    return sdwac_coupon_main::init();
+    return Sdevs_coupon::init();
 }
 
 /**
  *  kick-off the plugin
  */
-sdwac_coupon_main();
+sdevs_coupon();

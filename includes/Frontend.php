@@ -1,13 +1,13 @@
 <?php
 
-namespace springdevs\WooAdvanceCoupon;
+namespace SpringDevs\Coupons;
 
-use springdevs\WooAdvanceCoupon\Frontend\Auto;
-use springdevs\WooAdvanceCoupon\Frontend\Checkout;
-use springdevs\WooAdvanceCoupon\Frontend\Coupon;
-use springdevs\WooAdvanceCoupon\Frontend\Url;
-use springdevs\WooAdvanceCoupon\Frontend\Validation;
-use springdevs\WooAdvanceCoupon\Illuminate\Coupon as IlluminateCoupon;
+use SpringDevs\Coupons\Frontend\Auto;
+use SpringDevs\Coupons\Frontend\Checkout;
+use SpringDevs\Coupons\Frontend\Coupon;
+use SpringDevs\Coupons\Frontend\Url;
+use SpringDevs\Coupons\Frontend\Validation;
+use SpringDevs\Coupons\Illuminate\Coupon as IlluminateCoupon;
 
 /**
  * Frontend handler class
