@@ -1,10 +1,10 @@
-=== Coupons ===
+=== Advance Coupons for Woocommerce ===
 Contributors: naminbd, istiaqnirab
 Donate link:
 Tags: coupon, woocommerce-coupon
 Requires at least: 1.0.0
 Tested up to: 5.7
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 Requires PHP: 7.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -32,14 +32,14 @@ Create gift vouchers, store credits, special discounts based on the amount spent
     = Installation from within WordPress =
 
         1. Visit 'Plugins > 'Add New'.
-        2. Search for 'Coupons'.
-        3. Install and activate the 'Coupons' plugin.
+        2. Search for 'Advance Coupons for Woocommerce'.
+        3. Install and activate the 'Advance Coupons for Woocommerce' plugin.
 
     = Manual installation =
 
-        1. Upload the entire `Coupons` folder to the `/wp-content/plugins/` directory.
+        1. Upload the entire `Advance Coupons for Woocommerce` folder to the `/wp-content/plugins/` directory.
         2. Visit 'Plugins'.
-        3. Activate the `Coupons` plugin.
+        3. Activate the `Advance Coupons for Woocommerce` plugin.
 
 
 == Screenshots ==
@@ -52,5 +52,11 @@ Create gift vouchers, store credits, special discounts based on the amount spent
 
 == Changelog ==
 
-    = 1.0.0 =
-        * Initial release
+= 1.0.1 =
+* Fix - Product adjustment coupon not working if products not selected
+* Fix - can’t handle same type of multiple coupon
+* Fix - bulk discount not working on proper way
+* Display notice if Woocommerce not installed
+
+= 1.0.0 =
+* Initial release

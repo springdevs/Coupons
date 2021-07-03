@@ -38,23 +38,39 @@ class Coupon
     {
         if (is_admin()) return $price;
         $coupons = WC()->cart->applied_coupons;
+        $discount = 0;
+        $avaiable_product_ids = [];
         foreach ($coupons as $coupon) {
             $couponData = new \WC_Coupon($coupon);
             $coupon_id = $couponData->get_id();
             $post_meta = get_post_meta($coupon_id, '_sdwac_coupon_meta', true);
             if (!(empty($post_meta) || !is_array($post_meta) || !isset($post_meta['type'])))
-                if ($post_meta['type'] == 'sdwac_product_fixed') {
+                if ($post_meta['type'] == 'sdwac_product_fixed' || $post_meta['type'] == 'sdwac_product_percent') {
                     $product_ids = $couponData->get_product_ids();
-                    if (get_option('sdwac_price_cut_from', 'regular') == 'regular') $price = (float)$product->get_regular_price();
-                    if (in_array($product->get_id(), $product_ids)) return $price - $couponData->get_amount();
-                } elseif ($post_meta['type'] == 'sdwac_product_percent') {
-                    $product_ids = $couponData->get_product_ids();
-                    if (get_option('sdwac_price_cut_from', 'regular') == 'regular') $price = (float)$product->get_regular_price();
-                    if (in_array($product->get_id(), $product_ids)) return $price - (($couponData->get_amount() / 100) * $price);
+                    foreach ($product_ids as $product_id) array_push($avaiable_product_ids, $product_id);
                 }
+            if ($post_meta['type'] == 'sdwac_product_fixed') {
+                $discount += $couponData->get_amount();
+            } elseif ($post_meta['type'] == 'sdwac_product_percent') {
+                $discount += ($couponData->get_amount() / 100) * $price;
+            }
         }
-        // if ($product->get_sale_price()) return $product->get_sale_price();
-        return $price;
+        if ($discount == 0) {
+            return $price;
+        } else {
+            if (get_option('sdwac_price_cut_from', 'regular') == 'regular') $price = (float)$product->get_regular_price();
+            return $this->change_product_price($price, $discount, $product->get_id(), $avaiable_product_ids);
+        }
+    }
+
+    public function change_product_price($price, $discount, $product_id, $product_ids)
+    {
+        if ($price < $discount) return $price = 0;
+        if (!is_array($product_ids) || count($product_ids) == 0) {
+            return $price - $discount;
+        } else {
+            if (in_array($product_id, $product_ids)) return $price - $discount;
+        }
     }
 
     public function change_cart_table_price_display($price, $values, $cart_item_key)
@@ -96,10 +112,10 @@ class Coupon
             if ($discount['min'] <= $cart->subtotal && $discount['max'] >= $cart->subtotal) {
                 switch ($discount["type"]) {
                     case 'percentage':
-                        $bulk_discount = ($discount["value"] / 100) * $cart->subtotal;
+                        $bulk_discount = (($discount["value"] / 100) * $cart->subtotal) * 100;
                         break;
                     case 'fixed':
-                        $bulk_discount = $discount["value"];
+                        $bulk_discount = $discount["value"] * 100;
                         break;
                 }
             }

@@ -42,6 +42,7 @@ class Validation
         $check_multi = $this->check_multi();
         if (!$check_multi) return false;
         if ($coupon_meta['type'] == 'sdwac_product_percent' || $coupon_meta['type'] == 'sdwac_product_fixed') {
+            if (!is_array($product_ids) || count($product_ids) == 0) return $valid;
             if ($coupon_meta['list'] == 'inList') {
                 foreach (WC()->cart->get_cart() as $value) if (!in_array($value['product_id'], $product_ids)) return false;
             } else {
