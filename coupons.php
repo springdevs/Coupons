@@ -1,9 +1,9 @@
 <?php
 /*
-Plugin Name: Coupons
+Plugin Name: Advance Coupons for Woocommerce
 Plugin URI: https://wordpress.org/plugins/sdevs-wc-coupons
 Description: Create gift vouchers, store credits, special discounts based on the amount spent, etc.
-Version: 1.0.0
+Version: 1.0.1-beta
 Author: SpringDevs
 Author URI: https://springdevs.com/
 License: GPLv2
@@ -57,7 +57,7 @@ final class Sdevs_coupon
      *
      * @var string
      */
-    const version = '1.0.0';
+    const version = '1.0.1-beta';
 
     /**
      * Holds various class instances
@@ -153,6 +153,10 @@ final class Sdevs_coupon
         if (class_exists('WooCommerce')) {
             $this->includes();
             $this->init_hooks();
+        } else {
+            add_action('admin_notices', function () {
+                include 'includes/Admin/views/plugin-notice.php';
+            });
         }
     }
 
