@@ -46,15 +46,25 @@ class Coupon
                 if ($post_meta['type'] == 'sdwac_product_fixed') {
                     $product_ids = $couponData->get_product_ids();
                     if (get_option('sdwac_price_cut_from', 'regular') == 'regular') $price = (float)$product->get_regular_price();
-                    if (in_array($product->get_id(), $product_ids)) return $price - $couponData->get_amount();
+                    return $this->change_product_price($price, $couponData->get_amount(), $product->get_id(), $product_ids);
                 } elseif ($post_meta['type'] == 'sdwac_product_percent') {
                     $product_ids = $couponData->get_product_ids();
                     if (get_option('sdwac_price_cut_from', 'regular') == 'regular') $price = (float)$product->get_regular_price();
-                    if (in_array($product->get_id(), $product_ids)) return $price - (($couponData->get_amount() / 100) * $price);
+                    $discount = ($couponData->get_amount() / 100) * $price;
+                    return $this->change_product_price($product->get_regular_price(), $discount, $product->get_id(), $product_ids);
                 }
         }
         // if ($product->get_sale_price()) return $product->get_sale_price();
         return $price;
+    }
+
+    public function change_product_price($price, $discount, $product_id, $product_ids)
+    {
+        if (!is_array($product_ids) || count($product_ids) == 0) {
+            return $price - $discount;
+        } else {
+            if (in_array($product_id, $product_ids)) return $price - $discount;
+        }
     }
 
     public function change_cart_table_price_display($price, $values, $cart_item_key)
