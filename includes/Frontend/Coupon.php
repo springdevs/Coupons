@@ -112,10 +112,10 @@ class Coupon
             if ($discount['min'] <= $cart->subtotal && $discount['max'] >= $cart->subtotal) {
                 switch ($discount["type"]) {
                     case 'percentage':
-                        $bulk_discount = ($discount["value"] / 100) * $cart->subtotal;
+                        $bulk_discount = (($discount["value"] / 100) * $cart->subtotal) * 100;
                         break;
                     case 'fixed':
-                        $bulk_discount = $discount["value"];
+                        $bulk_discount = $discount["value"] * 100;
                         break;
                 }
             }
