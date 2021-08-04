@@ -29,7 +29,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => '8db61c6533a55bc6e99b2b956890560aed1fa039',
+    'reference' => '7b4c72615e6757e9798a6b5ce92247411e296c9f',
     'name' => 'springdevs/coupons',
   ),
   'versions' => 
@@ -41,7 +41,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => '8db61c6533a55bc6e99b2b956890560aed1fa039',
+      'reference' => '7b4c72615e6757e9798a6b5ce92247411e296c9f',
     ),
   ),
 );

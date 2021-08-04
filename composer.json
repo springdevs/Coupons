@@ -1,0 +1,24 @@
+{
+    "name": "springdevs/coupons",
+    "description": "Create gift vouchers, store credits, special discounts based on the amount spent, etc.",
+    "type": "wordpress-plugin",
+    "license": "GPLv2",
+    "authors": [
+        {
+            "name": "SpringDevs",
+            "email": "contact@springdevs.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php" : ">=7.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "SpringDevs\\Coupons\\": "includes/"
+        },
+        "files": [
+            "includes/functions.php"
+        ]
+    }
+}

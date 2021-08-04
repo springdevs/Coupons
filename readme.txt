@@ -3,9 +3,9 @@ Contributors: naminbd, istiaqnirab
 Donate link:
 Tags: coupon, woocommerce-coupon
 Requires at least: 1.0.0
-Tested up to: 5.7
+Tested up to: 5.8
 Stable tag: 1.0.1
-Requires PHP: 7.0
+Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -15,9 +15,9 @@ Create gift vouchers, store credits, special discounts based on the amount spent
 
 Create gift vouchers, store credits, special discounts based on the amount spent, etc.
 
- 
+
 ## Features
- 
+
 - Extends default woocommerce coupon features.
 - Create coupon with Product Adjustment
 - Apply coupon with bulk discounts
@@ -26,7 +26,7 @@ Create gift vouchers, store credits, special discounts based on the amount spent
 - Automatic apply coupon
 - First time purchase discounts
 
- 
+
 == Installation ==
 
     = Installation from within WordPress =
