@@ -1,5 +1,5 @@
 === Advance Coupons for Woocommerce ===
-Contributors: naminbd, istiaqnirab
+Contributors: naminbd, ok9xnirab
 Donate link:
 Tags: coupon, woocommerce-coupon
 Requires at least: 1.0.0
