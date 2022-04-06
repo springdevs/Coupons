@@ -3,7 +3,7 @@
 Plugin Name: Advance Coupons for Woocommerce
 Plugin URI: https://wordpress.org/plugins/advance-coupons-for-woocommerce/
 Description: Create gift vouchers, store credits, special discounts based on the amount spent, etc.
-Version: 1.0.2
+Version: 1.0.1
 Author: SpringDevs
 Author URI: https://springdevs.com/
 License: GPLv2
@@ -144,7 +144,7 @@ final class Sdevs_coupon
     }
 
     /**
-     * Load the plugin after all plugis are loaded
+     * Load the plugin after all plugins are loaded
      *
      * @return void
      */

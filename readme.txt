@@ -3,7 +3,7 @@ Contributors: naminbd, istiaqnirab
 Donate link:
 Tags: coupon, woocommerce-coupon
 Requires at least: 1.0.0
-Tested up to: 5.8
+Tested up to: 5.9
 Stable tag: 1.0.1
 Requires PHP: 7.4
 License: GPLv2 or later
