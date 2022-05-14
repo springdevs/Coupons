@@ -57,7 +57,7 @@ class Auto
             }
         } elseif (in_array($coupon_code, $applied_coupons)) {
             WC()->cart->remove_coupon($coupon_code);
-            wc_add_notice("Coupon has been Removed !! It's not avaiable for you !!", 'error');
+            wc_add_notice(__("Coupon has been Removed !! It's not available for you !!", "sdevs_coupons"), 'error');
         }
     }
 
@@ -86,16 +86,17 @@ class Auto
     }
 
     /**
-     * filter woocoupon
-     * @return filter_posts
-     **/
-    public function filter_coupon($posts)
+     * filter woo-coupon
+     * @param $posts
+     * @return array
+     */
+    public function filter_coupon($posts): array
     {
         $filter_posts = [];
         $first_coupon = get_option('sdwac_first_time_purchase_coupon');
         foreach ($posts as $post) {
             if ($first_coupon != $post->ID) {
-                array_push($filter_posts, $post);
+                $filter_posts[] = $post;
             }
         }
 

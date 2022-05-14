@@ -26,7 +26,7 @@ class Setting
         woocommerce_admin_fields($this->get_settings());
     }
 
-    public function get_settings()
+    public function get_settings(): array
     {
         $coupon_settings = [];
 

@@ -25,11 +25,11 @@ class Checkout
             if ($coupon->get_discount_type() === 'sdwac_bulk') {
                 $coupon_cls = new Coupon();
                 $discount = $coupon_cls->get_bulk_discount($coupon);
-                array_push($data, [
+                $data[] = [
                     'coupon' => $coupon->get_id(),
                     'coupon_type' => $coupon->get_discount_type(),
                     'discount' => $discount
-                ]);
+                ];
             } elseif ($coupon->get_discount_type() === 'sdwac_product_percent') {
                 $product_ids = $coupon->get_product_ids();
                 $discount = 0;
@@ -43,11 +43,11 @@ class Checkout
                         $discount += (($coupon->get_amount() / 100) * $price) * $value['quantity'];
                     }
                 }
-                array_push($data, [
+                $data[] = [
                     'coupon' => $coupon->get_id(),
                     'coupon_type' => $coupon->get_discount_type(),
                     'discount' => $discount
-                ]);
+                ];
             } elseif ($coupon->get_discount_type() === 'sdwac_product_fixed') {
                 $product_ids = $coupon->get_product_ids();
                 $discount = 0;
@@ -56,17 +56,17 @@ class Checkout
                         $discount += ($coupon->get_amount() * $value['quantity']);
                     }
                 }
-                array_push($data, [
+                $data[] = [
                     'coupon' => $coupon->get_id(),
                     'coupon_type' => $coupon->get_discount_type(),
                     'discount' => $discount
-                ]);
+                ];
             } else {
-                array_push($data, [
+                $data[] = [
                     'coupon' => $coupon->get_id(),
                     'coupon_type' => $coupon->get_discount_type(),
                     'discount' => $coupon->get_amount()
-                ]);
+                ];
             }
         }
         update_post_meta($order_id, '_sdevs_coupon_meta', $data);

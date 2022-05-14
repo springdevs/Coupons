@@ -67,12 +67,12 @@ class Coupon
             if (isset($_POST["discountLength"])) {
                 $discountLength = sanitize_text_field($_POST["discountLength"]);
                 for ($i = 0; $i < $discountLength; $i++) {
-                    array_push($sdwac_coupon_discount, [
-                        "min"   => sanitize_text_field($_POST["sdwac_coupon_discount_min_" . $i]),
-                        "max"   => sanitize_text_field($_POST["sdwac_coupon_discount_max_" . $i]),
-                        "type"  => sanitize_text_field($_POST["sdwac_coupon_discount_type_" . $i]),
+                    $sdwac_coupon_discount[] = [
+                        "min" => sanitize_text_field($_POST["sdwac_coupon_discount_min_" . $i]),
+                        "max" => sanitize_text_field($_POST["sdwac_coupon_discount_max_" . $i]),
+                        "type" => sanitize_text_field($_POST["sdwac_coupon_discount_type_" . $i]),
                         "value" => $_POST["sdwac_coupon_discount_value_" . $i] ? sanitize_text_field($_POST["sdwac_coupon_discount_value_" . $i]) : 0,
-                    ]);
+                    ];
                 }
             }
             update_post_meta($post_id, '_sdwac_coupon_meta', [
@@ -91,12 +91,12 @@ class Coupon
         $sdwac_coupon_rules = [];
         if ($rulesLength != 0) {
             for ($i = 0; $i < $rulesLength; $i++) {
-                array_push($sdwac_coupon_rules, [
-                    "type"       => sanitize_text_field($_POST["sdwac_coupon_rule_type_" . $i]),
-                    "operator"   => sanitize_text_field($_POST["sdwac_coupon_rule_operator_" . $i]),
+                $sdwac_coupon_rules[] = [
+                    "type" => sanitize_text_field($_POST["sdwac_coupon_rule_type_" . $i]),
+                    "operator" => sanitize_text_field($_POST["sdwac_coupon_rule_operator_" . $i]),
                     "item_count" => sanitize_text_field($_POST["sdwac_coupon_rule_item_" . $i]),
-                    "calculate"  => sanitize_text_field($_POST["sdwac_coupon_rule_calculate_" . $i]),
-                ]);
+                    "calculate" => sanitize_text_field($_POST["sdwac_coupon_rule_calculate_" . $i]),
+                ];
             }
         }
         $post_meta['relation'] = $relation;

@@ -18,7 +18,7 @@ class Validation
      * @param $coupon
      * @return bool
      */
-    public function woocommerce_coupon_is_valid($valid, $coupon)
+    public function woocommerce_coupon_is_valid($valid, $coupon): bool
     {
         $product_ids = $coupon->get_product_ids();
         $coupon_id = $coupon->get_id();
@@ -54,7 +54,7 @@ class Validation
         return $valid;
     }
 
-    public function check_multi()
+    public function check_multi(): bool
     {
         $sdwac_multi = get_option('sdwac_multi', 'yes');
         $applied_coupons = WC()->cart->applied_coupons;
@@ -198,7 +198,7 @@ class Validation
         return $amount;
     }
 
-    public function get_coupon_filter_cart_item_count($product_ids)
+    public function get_coupon_filter_cart_item_count($product_ids): int
     {
         $count = 0;
         foreach (WC()->cart->get_cart() as $value) {
@@ -208,7 +208,7 @@ class Validation
     }
 
     /**
-     * use this method to check coupon is validate or not
+     * use this method to check coupon is validated or not
      *
      * @param $code
      * @return bool

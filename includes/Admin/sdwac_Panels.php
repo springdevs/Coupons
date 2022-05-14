@@ -17,8 +17,8 @@ class sdwac_Panels
 
     public function save_coupon_data($post_id)
     {
-        $url_coupon = isset($_POST["sdwac_url_coupon"]) ? true : false;
-        $auto_coupon = isset($_POST["sdwac_auto_coupon"]) ? true : false;
+        $url_coupon = isset($_POST["sdwac_url_coupon"]);
+        $auto_coupon = isset($_POST["sdwac_auto_coupon"]);
         $sdwac_coupon_data = [
             "url_coupon" => $url_coupon,
             "auto_coupon" => $auto_coupon
@@ -44,7 +44,7 @@ class sdwac_Panels
         $coupon_meta = get_post_meta(get_the_ID(), '_sdwac_coupon_meta', true);
         $product_list_type = null;
         if (!empty($coupon_meta) && is_array($coupon_meta)) {
-            $product_list_type = isset($coupon_meta['list']) ? $coupon_meta['list'] : null;
+            $product_list_type = $coupon_meta['list'] ?? null;
         }
         if (!empty($post_meta) && is_array($post_meta)) {
             $url_coupon = $post_meta['url_coupon'] ? "yes" : false;
@@ -78,6 +78,8 @@ class sdwac_Panels
                 "value" => "yes",
                 "cbvalue" => $auto_coupon
             ]);
+
+            do_action('sdwac_coupon_tab_options');
             ?>
         </div>
 <?php

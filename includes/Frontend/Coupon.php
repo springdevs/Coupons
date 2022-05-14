@@ -99,8 +99,8 @@ class Coupon
     /**
      * Bulk Discount
      *
-     * @param object $coupon
-     * @return discount
+     * @param $coupon
+     * @return float|int
      */
     public function get_bulk_discount($coupon)
     {
@@ -129,9 +129,9 @@ class Coupon
      * @param $coupon_html
      * @param $coupon
      * @param $discount_amount_html
-     * @return coupon_html
+     * @return string coupon_html
      */
-    public function change_product_coupon_html($coupon_html, $coupon, $discount_amount_html)
+    public function change_product_coupon_html($coupon_html, $coupon, $discount_amount_html): string
     {
         $coupon_meta = get_post_meta($coupon->get_id(), "_sdwac_coupon_meta", true);
         if (empty($coupon_meta) || !is_array($coupon_meta) || !isset($coupon_meta['type'])) return $coupon_html;

@@ -37,12 +37,12 @@ class Assets
      *
      * @return void
      */
-    private function register_scripts($scripts)
+    private function register_scripts(array $scripts)
     {
         foreach ($scripts as $handle => $script) {
-            $deps      = isset($script['deps']) ? $script['deps'] : false;
-            $in_footer = isset($script['in_footer']) ? $script['in_footer'] : false;
-            $version   = isset($script['version']) ? $script['version'] : SDEVS_COUPON_VERSION;
+            $deps      = $script['deps'] ?? false;
+            $in_footer = $script['in_footer'] ?? false;
+            $version   = $script['version'] ?? SDEVS_COUPON_VERSION;
 
             wp_register_script($handle, $script['src'], $deps, $version, $in_footer);
         }
@@ -55,10 +55,10 @@ class Assets
      *
      * @return void
      */
-    public function register_styles($styles)
+    public function register_styles(array $styles)
     {
         foreach ($styles as $handle => $style) {
-            $deps = isset($style['deps']) ? $style['deps'] : false;
+            $deps = $style['deps'] ?? false;
 
             wp_register_style($handle, $style['src'], $deps, SDEVS_COUPON_VERSION);
         }
@@ -69,11 +69,11 @@ class Assets
      *
      * @return array
      */
-    public function get_scripts()
+    public function get_scripts(): array
     {
         $plugin_js_assets_path = SDEVS_COUPON_ASSETS . '/js/';
 
-        $scripts = [
+        return [
             "sdwac_coupon_app" => [
                 "src" => $plugin_js_assets_path . "app.js",
                 "in_footer" => true
@@ -84,8 +84,6 @@ class Assets
                 "in_footer" => true
             ],
         ];
-
-        return $scripts;
     }
 
     /**
@@ -93,16 +91,14 @@ class Assets
      *
      * @return array
      */
-    public function get_styles()
+    public function get_styles(): array
     {
         $plugin_css_assets_path = SDEVS_COUPON_ASSETS . '/css/';
 
-        $styles = [
+        return [
             "sdwac_coupon_app_css" => [
                 "src" => $plugin_css_assets_path . "app.css"
             ]
         ];
-
-        return $styles;
     }
 }
